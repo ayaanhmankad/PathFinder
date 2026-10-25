@@ -40,7 +40,30 @@ function fillList(listId, items) {
   });
 }
 
-// Show one career's information on the page.
+// Draw the simple two-bar chart using the saved growth number.
+function showGrowthChart(career, growthRate) {
+  const chart = document.querySelector("#chart-block");
+  const jobBar = document.querySelector("#job-bar");
+  const baselineBar = document.querySelector("#baseline-bar");
+
+  if (growthRate === null) {
+    chart.hidden = true;
+    return;
+  }
+
+  chart.hidden = false;
+  document.querySelector("#job-bar-label").textContent =
+    career.title + " (" + showGrowth(growthRate) + ")";
+  document.querySelector("#baseline-label").textContent =
+    "Reference (" + data.baselineGrowth + "%)";
+
+  // The scale ends at 50%. Negative growth uses a red bar.
+  jobBar.style.width = Math.min(Math.abs(growthRate) * 2, 100) + "%";
+  jobBar.className = growthRate < 0 ? "bar-fill negative" : "bar-fill";
+  baselineBar.style.width = data.baselineGrowth * 2 + "%";
+}
+
+// Show one career's saved information.
 function showCareer(career) {
   const sample = findSampleCareer(career.title);
   const stats = data.laborStats[career.title];
@@ -51,11 +74,9 @@ function showCareer(career) {
   // Some broad job titles do not have a direct BLS occupation match.
   if (stats) {
     document.querySelector("#job-growth").textContent = showGrowth(stats.growthRate);
-    if (stats.medianWage === null) {
-      document.querySelector("#job-wage").textContent = "Not published by BLS";
-    } else {
-      document.querySelector("#job-wage").textContent = "$" + stats.medianWage.toLocaleString() + " per year";
-    }
+    document.querySelector("#job-wage").textContent = stats.medianWage === null
+      ? "Not published by BLS"
+      : "$" + stats.medianWage.toLocaleString() + " per year";
     document.querySelector("#job-education").textContent = stats.education;
     document.querySelector("#data-note").textContent =
       "BLS match: " + stats.blsTitle + " (SOC " + stats.soc + "). " +
@@ -78,32 +99,22 @@ function showCareer(career) {
   // Every career has three suggested classes based on its category.
   fillList("job-electives", data.categoryIdeas[career.category]);
 
-  // Draw a simple two-bar chart using regular HTML and CSS.
-  const chart = document.querySelector("#chart-block");
-  const jobBar = document.querySelector("#job-bar");
-  const baselineBar = document.querySelector("#baseline-bar");
-  if (stats) {
-    chart.hidden = false;
-    document.querySelector("#job-bar-label").textContent = career.title + " (" + showGrowth(stats.growthRate) + ")";
-    document.querySelector("#baseline-label").textContent = "Reference (" + data.baselineGrowth + "%)";
-
-    // The scale ends at 50%. Negative growth uses a red bar.
-    jobBar.style.width = Math.min(Math.abs(stats.growthRate) * 2, 100) + "%";
-    jobBar.className = stats.growthRate < 0 ? "bar-fill negative" : "bar-fill";
-    baselineBar.style.width = data.baselineGrowth * 2 + "%";
-  } else {
-    chart.hidden = true;
-  }
-
   results.hidden = false;
 
-  // Show the results first so the map has a real size when it is drawn.
+  // Show the map after the results have a size, then add this career's markers.
   document.querySelector("#map-block").hidden = !sample;
   if (sample) {
     requestAnimationFrame(function () {
       showMap(sample);
     });
   }
+
+  if (!stats) {
+    showGrowthChart(career, null);
+    return;
+  }
+
+  showGrowthChart(career, stats.growthRate);
 }
 
 // Start the map only when it is needed. This avoids loading map tiles at page start.

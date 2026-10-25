@@ -1,21 +1,15 @@
-// Data for the 100 careers. Wages are yearly dollars; growth is a percent.
-// Source for job growth, median pay, and typical education:
-// BLS Occupational Projections and Worker Characteristics, Table 1.2:
-// https://www.bls.gov/emp/tables/occupational-projections-and-characteristics.Htm
-// Each laborStats record includes the BLS occupation title and SOC code used.
-// Class ideas, pros/cons, and sample map places are project examples, not
-// official BLS recommendations or state rankings.
+// Career list and sample details for the 100 job titles.
+// Official labor statistics are listed in laborStats below.
+// Source: https://www.bls.gov/emp/tables/occupational-projections-and-characteristics.Htm
+// Class ideas, pros/cons, and sample map places are project examples.
+
 const baselineGrowth = 4;
 
 // Three sample profiles add pros, cons, and example map locations.
-// Wage and growth values come from the same BLS table as the 100-job data below.
 const jobs = [
   {
     id: "data-scientist",
     title: "Data Scientist",
-    growthRate: 34.6,
-    medianWage: 120230,
-    education: "Bachelor’s degree",
     category: "Technology",
     color: 0x5965d8,
     pros: ["Solve interesting problems with data", "Strong demand across many industries"],
@@ -29,9 +23,6 @@ const jobs = [
   {
     id: "registered-nurse",
     title: "Registered Nurse",
-    growthRate: 5.6,
-    medianWage: 97550,
-    education: "Bachelor's degree",
     category: "Healthcare",
     color: 0x39a88c,
     pros: ["Make a direct difference in people’s lives", "Many specialties and work settings"],
@@ -45,9 +36,6 @@ const jobs = [
   {
     id: "graphic-designer",
     title: "Graphic Designer",
-    growthRate: -1.7,
-    medianWage: 62960,
-    education: "Bachelor's degree",
     category: "Creative Arts",
     color: 0xe39a56,
     pros: ["Turn ideas into visual stories", "Work in many industries or freelance"],
@@ -108,9 +96,7 @@ Object.keys(occupationGroups).forEach(function (category) {
   });
 });
 
-// Latest U.S. figures available in the BLS 2025-35 projections table.
-// Each record stores growth (%), 2025 median wage, entry education, and
-// the exact BLS occupation used. A note marks close matches for broad titles.
+// Saved BLS growth and median pay numbers, education levels, and occupation matches.
 const laborStats = {
   "Data Scientist": { growthRate: 34.6, medianWage: 120230, education: "Bachelor's degree", blsTitle: "Data scientists", soc: "15-2051" },
   "Software Developer": { growthRate: 10.2, medianWage: 135980, education: "Bachelor's degree", blsTitle: "Software developers", soc: "15-1252" },
@@ -214,7 +200,7 @@ const laborStats = {
   "Truck Driver": { growthRate: 3.8, medianWage: 58640, education: "Postsecondary nondegree award", blsTitle: "Heavy and tractor-trailer truck drivers", soc: "53-3032", matchNote: "Related BLS category" }
 };
 
-// Most occupations have a BLS match; preserve the three missing records as unknown.
+// Suggested high school classes for each career group.
 const categoryIdeas = {
   "Technology and math": ["Statistics", "Computer Science", "Economics"],
   "Healthcare": ["Biology", "Anatomy and Physiology", "Chemistry"],
