@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PathFinder - Explore a Career</title>
+
+  <!-- Leaflet adds a map for the three example careers. -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+  <!-- Keep the page design in its own easy-to-edit file. -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="page-shell">
+    <header class="page-header">
+      <p class="eyebrow">A small guide to big possibilities</p>
+      <h1>PathFinder</h1>
+      <p class="intro">Pick a career to see U.S. pay, education, job growth, and high school class ideas.</p>
+    </header>
+
+    <section class="picker-card">
+      <label for="job-picker">Choose one of 100 careers</label>
+      <select id="job-picker">
+        <option value="">Choose a career...</option>
+      </select>
+      <p class="source-note">
+        Labor numbers come from the
+        <a href="https://www.bls.gov/emp/tables/occupational-projections-and-characteristics.Htm" target="_blank" rel="noopener noreferrer">U.S. Bureau of Labor Statistics</a>.
+        Some titles use a related BLS occupation. Three have no direct match.
+      </p>
+    </section>
+
+    <!-- The results show after a career is selected. -->
+    <section id="results" class="results" hidden>
+      <section class="results-card job-card">
+        <div class="job-heading">
+          <div>
+            <h2 id="job-title"></h2>
+            <span id="job-category" class="category-pill"></span>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <span class="stat-label">Job growth (2025-35)</span>
+            <strong id="job-growth"></strong>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Median pay (2025)</span>
+            <strong id="job-wage"></strong>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Typical education</span>
+            <strong id="job-education"></strong>
+          </div>
+        </div>
+
+        <p id="data-note" class="data-note"></p>
+        <p class="data-note">
+          Source: <a href="https://www.bls.gov/emp/tables/occupational-projections-and-characteristics.Htm" target="_blank" rel="noopener noreferrer">BLS Table 1.2</a>
+          (2025-35 job projections, 2025 pay, and typical education).
+        </p>
+
+        <div id="sample-details" hidden>
+          <section class="info-section">
+            <h3>Good things about this job</h3>
+            <ul id="job-pros"></ul>
+          </section>
+          <section class="info-section">
+            <h3>Things to think about</h3>
+            <ul id="job-cons"></ul>
+          </section>
+          <section class="info-section">
+            <h3>Example states</h3>
+            <ul id="job-states"></ul>
+          </section>
+        </div>
+
+        <section class="info-section">
+          <h3>High school classes to try</h3>
+          <ul id="job-electives"></ul>
+        </section>
+      </section>
+
+      <aside class="results-card visuals-card">
+        <section id="chart-block" class="visual-section" hidden>
+          <h2>Growth comparison</h2>
+          <p class="help-text">These bars show how the number of jobs may change from 2025 to 2035. The colored bar is this job. Gray is a 4% ruler to compare with. A longer bar means a bigger change. Red and a minus sign mean there may be fewer jobs. This does not show your chance of getting hired.</p>
+
+          <div class="bar-row">
+            <span id="job-bar-label" class="bar-label"></span>
+            <div class="bar-track"><div id="job-bar" class="bar-fill"></div></div>
+          </div>
+          <div class="bar-row">
+            <span id="baseline-label" class="bar-label"></span>
+            <div class="bar-track"><div id="baseline-bar" class="bar-fill baseline-fill"></div></div>
+          </div>
+        </section>
+
+        <section id="map-block" class="visual-section" hidden>
+          <h2>Example locations</h2>
+          <p class="help-text">These are sample places to explore, not a ranking of every state.</p>
+          <div id="career-map" aria-label="Map with example career locations"></div>
+        </section>
+      </aside>
+    </section>
+
+    <p class="footer-note">BLS pay is a national median. Actual pay and job opportunities change by location and experience.</p>
+  </main>
+
+  <!-- The facts, page behavior, and page design each have their own file. -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="career-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
