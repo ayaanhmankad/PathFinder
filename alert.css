@@ -9,8 +9,8 @@ body {
   margin: 0;
   padding: 20px;
   place-items: center;
-  background: #f5f7fb;
-  color: #1d2940;
+  background: #0c1220;
+  color: #edf2ff;
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.5;
 }
@@ -18,15 +18,15 @@ body {
 .alert-card {
   width: min(560px, 100%);
   padding: 32px;
-  border: 1px solid #e5eaf2;
+  border: 1px solid #29354b;
   border-radius: 16px;
-  background: white;
-  box-shadow: 0 8px 24px rgba(35, 51, 83, 0.09);
+  background: #151e30;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
 }
 
 .eyebrow {
   margin: 0 0 8px;
-  color: #5965d8;
+  color: #9a9fff;
   font-size: 0.82rem;
   font-weight: bold;
   text-transform: uppercase;
@@ -39,24 +39,24 @@ h1 {
 
 .alert-card > p:not(.eyebrow) {
   margin: 0 0 24px;
-  color: #69758b;
+  color: #a4b0c7;
 }
 
 .continue-button {
   display: inline-block;
   padding: 11px 16px;
   border-radius: 9px;
-  background: #5965d8;
+  background: #5865e8;
   color: white;
   font-weight: bold;
   text-decoration: none;
 }
 
 .continue-button:hover {
-  background: #4652c2;
+  background: #6b76f0;
 }
 
 .continue-button:focus-visible {
-  outline: 3px solid #c9ceff;
+  outline: 3px solid #646ba9;
   outline-offset: 3px;
 }

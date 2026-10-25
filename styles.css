@@ -1,11 +1,11 @@
 /* Change these colors to give the app a different look. */
 :root {
-  --page-color: #f5f7fb;
-  --card-color: #ffffff;
-  --text-color: #1d2940;
-  --soft-text: #69758b;
-  --accent-color: #5965d8;
-  --line-color: #e5eaf2;
+  --page-color: #0c1220;
+  --card-color: #151e30;
+  --text-color: #edf2ff;
+  --soft-text: #a4b0c7;
+  --accent-color: #9a9fff;
+  --line-color: #29354b;
 }
 
 * {
@@ -76,7 +76,7 @@ h3 {
   border: 1px solid var(--line-color);
   border-radius: 16px;
   background: var(--card-color);
-  box-shadow: 0 8px 24px rgba(35, 51, 83, 0.07);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
 }
 
 .picker-card label {
@@ -89,15 +89,16 @@ select {
   width: 100%;
   min-height: 46px;
   padding: 8px 12px;
-  border: 1px solid #cfd6e4;
+  border: 1px solid var(--line-color);
   border-radius: 9px;
-  background: white;
+  background: #10182a;
   color: var(--text-color);
   font: inherit;
+  color-scheme: dark;
 }
 
 select:focus {
-  outline: 3px solid #dfe2ff;
+  outline: 3px solid #454c83;
 }
 
 .source-note {
@@ -115,18 +116,18 @@ a {
   margin-bottom: 18px;
   padding: 10px 16px;
   border-radius: 9px;
-  background: var(--accent-color);
+  background: #5865e8;
   color: white;
   font-weight: bold;
   text-decoration: none;
 }
 
 .page-button:hover {
-  background: #4652c2;
+  background: #6b76f0;
 }
 
 .page-button:focus-visible {
-  outline: 3px solid #c9ceff;
+  outline: 3px solid #646ba9;
   outline-offset: 3px;
 }
 
@@ -150,8 +151,8 @@ a {
   display: inline-block;
   padding: 4px 10px;
   border-radius: 20px;
-  background: #eef0ff;
-  color: var(--accent-color);
+  background: #292d50;
+  color: #c2c5ff;
   font-size: 0.85rem;
 }
 
@@ -164,7 +165,7 @@ a {
 .stat {
   padding: 12px;
   border-radius: 10px;
-  background: #f7f8fc;
+  background: #10182a;
 }
 
 .stat-label,
@@ -227,7 +228,7 @@ a {
   height: 18px;
   overflow: hidden;
   border-radius: 10px;
-  background: #edf0f6;
+  background: #29354b;
 }
 
 .bar-fill {
@@ -239,11 +240,11 @@ a {
 }
 
 .bar-fill.negative {
-  background: #bf5a63;
+  background: #ef7886;
 }
 
 .baseline-fill {
-  background: #aab3c3;
+  background: #66748d;
 }
 
 #career-map {
@@ -251,7 +252,12 @@ a {
   overflow: hidden;
   border: 1px solid var(--line-color);
   border-radius: 12px;
-  background: #eef2f7;
+  background: #10182a;
+}
+
+/* Give the map tiles a dark tint so they fit the rest of the page. */
+#career-map .leaflet-tile {
+  filter: brightness(0.72) saturate(0.8);
 }
 
 .footer-note {
